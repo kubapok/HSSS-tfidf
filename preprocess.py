@@ -15,13 +15,13 @@ test_f = [a.rstrip('\n') for a in open(DATA_PATH + 'test-A/in.tsv', 'r').readlin
 
 vectorizer = TfidfVectorizer()
 
-pickle.dump(vectorizer,open('vectorizer.pkl','wb'))
 
 train_X = vectorizer.fit_transform(train_f)
 dev_X = vectorizer.transform(dev_f)
 test_X = vectorizer.transform(test_f)
 
 
+pickle.dump(vectorizer,open('vectorizer.pkl','wb'))
 pickle.dump(train_X,open('train_X.pkl','wb'))
 pickle.dump(dev_X,open('dev_X.pkl','wb'))
 pickle.dump(test_X,open('test_X.pkl','wb'))
@@ -39,4 +39,3 @@ predicted_y = np.maximum(predicted_y, np.min(train_y))
 
 print('dev score:')
 print(np.sqrt(mean_squared_error(predicted_y, dev_y)))
-
